@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def show
-    set_article
+
   end
 
   def index
@@ -13,7 +14,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(params.require(:article).permit(:title, :description))
+    @article = Article.new(article_params)
     if @article.save
       flash[:notice] = "Article was successfully created"
       redirect_to @article
@@ -23,12 +24,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    set_article
   end
 
   def update
-    set_article
-    if @article.update(params.require(:article).permit(:title, :description))
+    if @article.update(article_params)
       flash[:notice] = "Article was successfully updated"
       redirect_to @article
     else
@@ -37,14 +36,21 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    set_article
     @article.destroy
     redirect_to articles_path
   end
 
   private
+  
+  # used in show, edit. update, and destroy
+  # queries the article with a particular ID
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  # the allowed params for an article object (the title and description)
+  def article_params
+    params.require(:article).permit(:title, :description)
   end
 
 end
