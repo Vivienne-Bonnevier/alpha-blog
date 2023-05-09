@@ -1,5 +1,15 @@
 <h1>Create a new article</h1>
 
+<!-- Error checking -->
+<% if @article.errors.any? %>
+  <p>Please resolve all errors to save your article.</p>
+  <ul>
+    <% @article.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with scope: :article, data: { turbo: false}, url: articles_path, local: true do |f| %>
 
   <p>
