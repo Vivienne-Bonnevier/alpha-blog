@@ -1,0 +1,8 @@
+<% @users.each do |user| %>
+  <h4><%= user.username %></h4>
+  <%= gravatar_for user %>
+  <p>
+    <%= link_to "View Profile", user_path(user) %> <br>
+    <%= pluralize(user.articles.count, "article") %>
+  </p> <br>
+<% end %>
