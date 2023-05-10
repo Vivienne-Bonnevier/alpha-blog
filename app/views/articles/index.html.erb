@@ -1,5 +1,7 @@
 <h2>Articles listing page</h2>
 
-<%= render 'article' %>
+<%= will_paginate @articles %>
+<%= render 'article' %><br>
+<%= will_paginate @articles %>
 
 <p><%= link_to "Create New Article", new_article_path %></p>

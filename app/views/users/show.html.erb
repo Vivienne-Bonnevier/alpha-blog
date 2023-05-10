@@ -5,4 +5,5 @@
 <p><%= link_to "Edit your profile", edit_user_path(@user) %></p>
 
 <h3>Articles</h3>
+<%= will_paginate @articles %>
 <%= render "articles/article" %>

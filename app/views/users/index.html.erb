@@ -1,5 +1,7 @@
 <h2>Users</h2>
 
-<%= render 'user' %>
+<%= will_paginate @users %>
+<%= render 'user' %> <br>
+<%= will_paginate @users %>
 
 <p><%= link_to "Sign Up to blog!", signup_path %></p>
