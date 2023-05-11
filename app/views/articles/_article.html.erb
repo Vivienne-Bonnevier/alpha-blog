@@ -13,8 +13,11 @@
         <td><%= link_to article.title, article_path(article) %></td>
         <td><%= article.description %></td>
         <td><%= link_to article.user.username, user_path(article.user) if article.user %></td>
-        <td><%= link_to "Edit", edit_article_path(article) %></td>
-        <td><%= link_to "Delete", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+        <!-- redundant? current_user is truthy or falsey -->
+        <% if logged_in? && article.user == current_user %>
+          <td><%= link_to "Edit", edit_article_path(article) %></td>
+          <td><%= link_to "Delete", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

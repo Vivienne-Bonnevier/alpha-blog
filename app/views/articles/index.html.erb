@@ -4,4 +4,4 @@
 <%= render 'article' %><br>
 <%= will_paginate @articles %>
 
-<p><%= link_to "Create New Article", new_article_path %></p>
+<p><%= link_to "Create New Article", new_article_path if logged_in? %></p>
