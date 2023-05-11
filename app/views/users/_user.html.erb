@@ -4,5 +4,9 @@
   <p>
     <%= link_to "View Profile", user_path(user) %> <br>
     <%= pluralize(user.articles.count, "article") %>
+    <% if logged_in? && current_user.admin? %>
+      <br><%= link_to "Edit", edit_user_path(user) %> |
+      <%= link_to "Delete", user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This will also delete all associated articles." } %>
+    <% end %>
   </p> <br>
 <% end %>

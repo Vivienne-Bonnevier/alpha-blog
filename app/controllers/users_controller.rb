@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     # this MUST come before
     before_action :require_user, only: [:edit, :update, :destroy]
     before_action :require_same_user, only: [:edit, :update, :destroy]
+    before_action :require_different_admin, only: [:destroy]
 
 
   def index
@@ -42,7 +43,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    session[:user_id] = nil
+    session[:user_id] = nil if @user == current_user
     flash[:notice] = "Account and all authored articles deleted"
     redirect_to root_path
   end
@@ -58,10 +59,20 @@ class UsersController < ApplicationController
 
   # how to make this less redundant with articles.controller?
   def require_same_user
-    if current_user != @user
+    # if someone is not the target user and they are also not an admin
+    if current_user != @user && !current_user.admin?
       flash[:alert] = "Unauthorized: You may not edit or delete another user's profile."
       redirect_to @user
     end
   end
+
+  # prevents an admin from deleting their own account, thus preventing the scenario where there may not be an admin
+  def require_different_admin
+    if current_user == @user && current_user.admin?
+      flash[:alert] = "Admins may not delete their own accounts. Please contact another admin and they will asist you."
+      redirect_to @user
+    end
+  end
+
 
 end

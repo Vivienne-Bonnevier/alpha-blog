@@ -8,4 +8,14 @@ module ApplicationHelper
     image_tag(gravatar_url, alt: user.username)
   end
 
+  def flash_color(name)
+    if name == "notice"
+      return "green"
+    elsif name == "alert"
+      return "red"
+    else
+      return "yellow"
+    end
+  end
+
 end

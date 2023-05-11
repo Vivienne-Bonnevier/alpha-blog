@@ -4,11 +4,15 @@
 
 <p><%= link_to "Edit your profile", edit_user_path(@user) if logged_in? && @user == current_user %></p>
 
-<h3>Articles</h3>
-<%= will_paginate @articles %>
-<%= render "articles/article" %>
+<% if @articles.length != 0 %>
+  <h3>Articles</h3>
+  <%= will_paginate @articles %>
+  <%= render "articles/article" %>
+<% end %>
 
 <br>
 <% if logged_in? && @user == current_user %>
   <h5 style="color:red;"><%= link_to "Delete your Account", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This will also delete all associated articles." } %></h5>
+<% elsif logged_in? && current_user.admin? %>
+  <h5 style="color:red;"><%= link_to "Delete Account", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This will also delete all associated articles." } %></h5>
 <% end %>

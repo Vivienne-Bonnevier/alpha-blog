@@ -5,7 +5,7 @@
 <p><strong>description: </strong><%= @article.description%></p>
 
 <div>
-  <% if logged_in? && @article.user == current_user %>
+  <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
   <%= link_to "Edit", edit_article_path(@article) %></li>
   |
   <%= link_to "Delete", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %></li>
