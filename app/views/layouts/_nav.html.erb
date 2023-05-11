@@ -1,5 +1,7 @@
 <div>
   <%= link_to "HOME", root_path %> |
   <%= link_to "ARTICLES", articles_path %> |
-  <%= link_to "USERS", users_path %>
+  <%= link_to "USERS", users_path %> |
+  <%= link_to "LOG IN", login_path unless session[:user_id] %>
+  <%= link_to "LOG OUT", logout_path, data: { turbo_method: :delete } if session[:user_id] %>
 </div>
