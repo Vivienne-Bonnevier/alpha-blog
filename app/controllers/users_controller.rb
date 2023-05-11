@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
+    # this MUST come before
+    before_action :require_user, except: [:show, :index]
+    before_action :require_same_user, only: [:edit, :update, :destroy]
 
 
   def index
@@ -44,6 +47,14 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  # how to make this less redundant with articles.controller?
+  def require_same_user
+    if current_user != @user
+      flash[:alert] = "Unauthorized: You may not edit or delete another user's profile."
+      redirect_to @user
+    end
   end
 
 end
