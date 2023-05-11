@@ -1,0 +1,14 @@
+<%= render "shared/errors", obj: @category %>
+
+<%= form_with model: @category, local: true, data: { turbo: false} do |f| %>
+
+  <p>
+    <%= f.label :name, "Category:" %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
