@@ -7,3 +7,8 @@
 <h3>Articles</h3>
 <%= will_paginate @articles %>
 <%= render "articles/article" %>
+
+<br>
+<% if logged_in? && @user == current_user %>
+  <h5 style="color:red;"><%= link_to "Delete your Account", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This will also delete all associated articles." } %></h5>
+<% end %>
