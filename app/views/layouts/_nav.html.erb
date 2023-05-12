@@ -2,9 +2,9 @@
   <%= link_to "HOME", root_path %> |
   <%= link_to "ARTICLES", articles_path %> |
   <%= link_to "USERS", users_path %> |
+  <%= link_to "CATEGORIES", categories_path %> |
   <% if logged_in? %>
-    <%= link_to "#{"(Admin)
-     " if current_user.admin?}#{current_user.username}", user_path(current_user) %> |
+    <%= link_to "#{"(Admin)" if current_user.admin?}#{current_user.username}", user_path(current_user) %> |
     <%= link_to "LOG OUT", logout_path, data: { turbo_method: :delete } %>
   <% else %>
     <%= link_to "LOG IN", login_path %> |

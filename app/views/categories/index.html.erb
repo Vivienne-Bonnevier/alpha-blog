@@ -3,3 +3,5 @@
 <%= will_paginate @categories %>
 <%= render 'category' %> <br>
 <%= will_paginate @categories %>
+
+<p><%= link_to "Create New Category", new_category_path if logged_in? && current_user.admin? %></p>
