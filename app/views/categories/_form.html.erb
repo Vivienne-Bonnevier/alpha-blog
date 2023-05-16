@@ -1,14 +1,12 @@
 <%= render "shared/errors", obj: @category %>
 
-<%= form_with model: @category, local: true, data: { turbo: false} do |f| %>
+<%= form_with model: @category, local: true, data: { turbo: false}, class: "shadow-lg w-2/5 mx-auto border border-solid border-black flex flex-col bg-gray-400 mb-4" do |f| %>
 
-  <p>
-    <%= f.label :name, "Category:" %><br>
-    <%= f.text_field :name %>
-  </p>
+  <fieldset class="mx-auto flex flex-col w-1/2 my-2"> 
+    <%= f.label :name, "Category:", class:"text-lg"%>
+    <%= f.text_field :name, class: "w-full border border-black border-solid m-0 p-1" %>
+  </fieldset>
 
-  <p>
-    <%= f.submit %>
-  </p>
+  <%= f.submit class: "bg-white border-solid border mx-auto w-1/4 align-center border-black my-2"%>
 
 <% end %>

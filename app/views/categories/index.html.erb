@@ -1,7 +1,11 @@
-<h2>Categories</h2>
+<h2 class = "font-bold text-3xl mx-auto text-center mb-4">Categories</h2>
 
-<%= will_paginate @categories %>
-<%= render 'category' %> <br>
-<%= will_paginate @categories %>
+<% if @length > @padg %>
+  <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md mb-8"><%= will_paginate @categories %></div>
+<% end %>
+<%= render 'category' %>
+<% if @length > @padg %>
+  <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md mt-8"><%= will_paginate @categories %></div>
+<% end %>
 
-<p><%= link_to "Create New Category", new_category_path if logged_in? && current_user.admin? %></p>
+<p class="text-center mx-auto underline my-2"><%= link_to "Create New Category", new_category_path if logged_in? && current_user.admin? %></p>
