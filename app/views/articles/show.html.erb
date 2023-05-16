@@ -1,11 +1,31 @@
 <h2 class = "font-bold text-3xl mx-auto my-2 text-center text-white"><%= @article.title%></h2>
-<p class="text-center"><strong>by: </strong><%= link_to @article.user.username, user_path(@article.user) if @article.user %></p>
-<p class="text-center"><strong>description: </strong><%= @article.description%></p>
+  <div class="bg-gray-200 mx-auto rounded-md flex flex-col my-3 w-2/5 border border-solid border-black shadow-xl">
+    <span class="mx-auto mt-2">By: <%= link_to @article.user.username, user_path(@article.user), class:"underline" if @article.user %></span>
 
-<div>
-  <% if logged_in? && (@article.user == current_user || current_user.admin?) %>
-  <%= link_to "Edit", edit_article_path(@article) %></li>
-  |
-  <%= link_to "Delete", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %></li>
-  <% end %>
-</div>
+    <div class="flex flex-row justify-center bg-gray-200 my-1">
+      <span class="text-xs">Created <%= time_ago_in_words(@article.created_at) %> ago</span>
+      <% unless @article.updated_at == @article.created_at %>
+        <span class="text-xs">, Edited <%= time_ago_in_words(@article.updated_at) %> ago</span>
+      <% end %>
+    </div>
+
+    <p class="bg-white mb-2 border-x-0 border border-black text-center"><%= @article.description %></p>
+
+    <% if @article.categories.any? %>
+      <div class="flex flex-row justify-center">
+        <% @article.categories.each do |category| %>
+          <span class=""><%= link_to category.name, category_path(category.id), class: "p-1.5 mx-1 text-xs rounded-lg shadow-xl text-white bg-emerald-600 hover:bg-black italic"%></span>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if logged_in? && ( @article.user == current_user || current_user.admin? ) %>
+      <div class="flex flex-row mx-auto my-2">
+        <span><%= link_to "Edit", edit_article_path(@article), class:"text-blue-800 underline" %></span>
+        <span class="mx-2"></span>
+        <span><%= link_to "Delete", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-red-800 underline" %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <p class="text-center mx-auto" ><%= link_to "Articles", articles_path, class: "underline p-4 text-white" %></p>

@@ -1,4 +1,4 @@
-<h2 class="mx-0, my-2 text-center text-3xl font-bold">Login to Alpha Blog</h2>
+<h2 class="mx-0, mb-2 text-center text-3xl font-bold text-white">Login to Alpha Blog</h2>
 
 <%= form_with scope: :session, url: login_path, local: true, data: { turbo: false}, class: "shadow-lg w-2/5 mx-auto border border-solid border-black flex flex-col bg-gray-400 mb-4" do |f| %>
 
@@ -17,5 +17,5 @@
 <% end %>
 
 <div class="flex flex-row mx-auto text-center justify-center">
-<p>New user? <%= link_to "Sign Up Here", signup_path, class:"underline p-2 hover:bg-black hover:text-white" %></p>
+<p class="text-white">New user? <%= link_to "Sign Up Here", signup_path, class:"underline p-1 hover:bg-black hover:text-white" %></p>
 </div>

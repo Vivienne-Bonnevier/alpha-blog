@@ -12,5 +12,10 @@
     <%= f.text_area :description, class: "w-full border border-black border-solid m-0 p-0", size: "50x10" %>
   </fieldset>
 
+  <fieldset class="mx-auto flex flex-col w-1/2 my-2">
+    <%= f.label :category, class:"text-lg"%>
+    <%= f.collection_select :category_ids, Category.all, :id, :name, {prompt: "Make your selection from the list below."}, {size: 6, multiple: true, class: "w-full border border-black border-solid m-0 p-0"} %>
+  </fieldset>
+
   <%= f.submit class: "bg-white border-solid border mx-auto w-1/4 align-center border-black my-2"%>
 <% end %>

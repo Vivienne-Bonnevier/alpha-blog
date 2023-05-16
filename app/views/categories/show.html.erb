@@ -1,3 +1,20 @@
-<h2 class = "font-bold text-3xl mx-auto text-center mb-4">Category&colon; <%= @category.name %></h2>
+<h2 class = "font-bold text-3xl mx-auto mb-4 text-center text-white">Category&colon; <%= @category.name %></h2>
 
-<p class="text-center mx-auto" ><%= link_to "Back", categories_path, class: "underline p-4" %></p>
+<p class="text-center mx-auto text-white mb-2" ><%= link_to "Categories", categories_path, class: "underline p-4" %></p>
+
+<% if @category.articles.length != 0 %>
+  <% if @category.articles.length > @padg %>
+    <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
+  <% end %>
+  <%= render "articles/article" %>
+  <% if @category.articles.length > @padg %>
+    <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md mb-2"><%= will_paginate @articles %></div>
+  <% end %>
+  <p class="text-center mx-auto text-white" ><%= link_to "Categories", categories_path, class: "underline p-4" %></p>
+<% end %>
+
+<% if logged_in? && current_user.admin? %>
+  <p class="mx-auto text-blue-800 underline my-2 text-center bg-white p-1 rounded-lg max-w-min shadow-lg hover:bg-black hover:text-white">
+    <%= link_to "Update", edit_category_path(@category) %>
+  </p>
+<% end %>

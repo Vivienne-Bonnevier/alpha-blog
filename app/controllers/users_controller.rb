@@ -1,17 +1,20 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-    # this MUST come before
-    before_action :require_user, only: [:edit, :update, :destroy]
-    before_action :require_same_user, only: [:edit, :update, :destroy]
-    before_action :require_different_admin, only: [:destroy]
+  # this MUST come before
+  before_action :require_user, only: [:edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_different_admin, only: [:destroy]
 
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 5)
+    @padg = 6
+    @users = User.paginate(page: params[:page], per_page: @padg)
+    @length = User.all.size
   end
 
   def show
-    @articles = @user.articles.paginate(page: params[:page], per_page: 4)
+    @padg = 4
+    @articles = @user.articles.paginate(page: params[:page], per_page: @padg)
   end
   
   def new

@@ -6,7 +6,7 @@
         <h4 class="font-bold"><%= user.username %></h4>
         <address><%= user.email %></address>
         <p class="text-blue-800 underline"><%= link_to "View Profile", user_path(user) %></p>
-        <p><%= pluralize(user.articles.count, "article") %></p>
+        <p class="text-sm"><%= pluralize(user.articles.count, "article") %></p>
       </div>
       <% if logged_in? && current_user.admin? %>
         <div class="flex-row ml-auto mr-2">

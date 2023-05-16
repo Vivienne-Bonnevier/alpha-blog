@@ -1,9 +1,9 @@
-<h2 class = "font-bold text-3xl mx-auto text-center mb-4">Articles</h2>
+<h2 class = "font-bold text-3xl mx-auto text-center mb-4 text-white">Articles</h2>
 
-<p class="text-center mx-auto underline my-4"><%= link_to "Create New Article", new_article_path if logged_in? %></p>
+<p class="text-center mx-auto underline my-4 text-white"><%= link_to "Create New Article", new_article_path if logged_in? %></p>
 
 <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
 <%= render 'article' %><br>
 <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
 
-<p class="text-center mx-auto underline my-2"><%= link_to "Create New Article", new_article_path if logged_in? %></p>
+<p class="text-center mx-auto underline my-2 text-white"><%= link_to "Create New Article", new_article_path if logged_in? %></p>

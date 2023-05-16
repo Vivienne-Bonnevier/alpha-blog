@@ -2,10 +2,27 @@
   <div class="bg-gray-200 mx-auto rounded-md flex flex-col my-3 w-2/5 border border-solid border-black">
     <h3 class="mx-auto font-semibold text-lg underline my-1"><%= link_to article.title, article_path(article) %></h3>
     <span class="mx-auto">By: <%= link_to article.user.username, user_path(article.user), class:"underline" if article.user %></span>
+
+    <div class="flex flex-row justify-center bg-gray-200 mt-1">
+      <span class="text-xs">Created <%= time_ago_in_words(article.created_at) %> ago</span>
+      <% unless article.updated_at == article.created_at %>
+        <span class="text-xs">, Edited <%= time_ago_in_words(article.updated_at) %> ago</span>
+      <% end %>
+    </div>
+
     <p class="bg-white my-2 border-x-0 border border-black text-center"><%= article.description %></p>
+
+    <% if article.categories.any? %>
+      <div class="flex flex-row justify-center mb-2">
+        <% article.categories.each do |category| %>
+          <span class=""><%= link_to category.name, category_path(category.id), class: "p-1.5 mx-1 text-xs rounded-lg shadow-xl text-white bg-emerald-600 hover:bg-black italic"%></span>
+        <% end %>
+      </div>
+    <% end %>
+    
     <!-- redundant? current_user is truthy or falsey -->
     <% if logged_in? && ( article.user == current_user || current_user.admin? ) %>
-      <div class="flex flex-row mx-auto my-2">
+      <div class="flex flex-row mx-auto mb-2">
         <span><%= link_to "Edit", edit_article_path(article), class:"text-blue-800 underline" %></span>
         <span class="mx-2"></span>
         <span><%= link_to "Delete", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-red-800 underline" %></span>
