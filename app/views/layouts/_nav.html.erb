@@ -1,14 +1,26 @@
-<div>
-  <%= link_to "HOME", root_path %> |
-  <%= link_to "ARTICLES", articles_path %> |
-  <%= link_to "USERS", users_path %> |
-  <%= link_to "CATEGORIES", categories_path %> |
-  <% if logged_in? %>
-    <%= link_to "#{"(Admin)" if current_user.admin?}#{current_user.username}", user_path(current_user) %> |
-    <%= link_to "LOG OUT", logout_path, data: { turbo_method: :delete } %>
-  <% else %>
-    <%= link_to "LOG IN", login_path %> |
-    <%= link_to "SIGN UP", signup_path %>
-  <% end %>
+<header class="flex flex-row shadow-lg bg-black text-white py-2">
+  <h1 class="font-bold text-3xl mx-4" >Alpha Blog</h1>
+  <ul class="flex flex-row grow">
+    <li class="mt-1.5"><%= link_to "HOME", root_path, class: "p-4 align-middle hover:bg-emerald-600 mx-auto" %></li>
+    <li class="mt-1.5"><%= link_to "ARTICLES", articles_path, class: "p-4 align-middle hover:bg-emerald-600 mx-auto" %></li>
+    <li class="mt-1.5"><%= link_to "USERS", users_path, class: "p-4 align-middle hover:bg-emerald-600 mx-auto" %></li>
+    <li class="mt-1.5"><%= link_to "CATEGORIES", categories_path, class: "p-4 align-middle hover:bg-emerald-600 mx-auto" %></li>
+    <% if logged_in? %>
+      <li class="mt-1.5"><%= link_to "#{"(Admin) " if current_user.admin?}#{current_user.username}", user_path(current_user), class: "p-4 align-middle hover:bg-emerald-600 mx-auto" %></li>
+      <li class="mt-1.5"><%= link_to "LOG OUT", logout_path, data: { turbo_method: :delete }, class: "p-4 align-middle hover:bg-emerald-600 mx-auto" %></li>
+    <% else %>
+      <li class="mt-1.5"><%= link_to "LOG IN", login_path, class: "p-4 align-middle hover:bg-emerald-600 mx-auto" %></li>
+      <li class="mt-1.5"><%= link_to "SIGN UP", signup_path, class: "p-4 align-middle hover:bg-emerald-600 mx-auto" %></li>
+    <% end %>
+  </ul>
+</header>
 
-</div>
+<!--<div class="mt-1.5">
+  <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" type="button"> ARTICLES
+    <i class=""></i>
+  </button>
+  <div id="dropdownHover">
+    <%= link_to "Articles Index", articles_path, class: "p-4 align-middle hover:bg-emerald-600 mx-auto" %></li>
+    <%= link_to "New Article", new_article_path, class: "p-4 align-middle hover:bg-emerald-600 mx-auto" %></li>
+  </div>
+</div>-->

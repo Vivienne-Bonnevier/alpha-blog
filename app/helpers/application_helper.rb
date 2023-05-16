@@ -5,17 +5,16 @@ module ApplicationHelper
     hash = Digest::MD5.hexdigest(email)
     size = options[:size]
     gravatar_url = "https://www.gravatar.com/avatar/#{hash}?s=#{size}"
-    image_tag(gravatar_url, alt: user.username)
+    image_tag(gravatar_url, alt: user.username, class:"border rounded-lg m-0")
   end
 
   def flash_color(name)
     if name == "notice"
-      return "green"
+      return "emerald-600"
     elsif name == "alert"
-      return "red"
+      return "red-800"
     else
-      return "yellow"
+      return "yellow-600"
     end
   end
-
 end

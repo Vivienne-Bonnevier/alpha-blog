@@ -1,10 +1,10 @@
-<h2>Home Page</h2>
-<h3>Welcome!</h3>
+<h2 class="text-4xl font-extrabold text-white mx-auto my-4 text-center">Home Page</h2>
+<h3 class="text-xl text-white text-center my-3">Welcome!</h3>
 
-<div>
-<%= link_to "Articles Listing", articles_path %>
-|
-<%= link_to "About Page", about_path %>
-|
-<%= link_to "Sign Up", signup_path %>
+<div class="flex flex-row mx-auto text-center justify-center">
+<%= link_to "Articles Listing", articles_path, class:"mx-4 underline p-2 hover:bg-black hover:text-white" %>
+<span class="mt-2">|</span>
+<%= link_to "About Page", about_path, class:"mx-4 underline p-2 hover:bg-black hover:text-white" %>
+<span class="mt-2">|</span>
+<%= link_to "Sign Up", signup_path, class:"mx-4 underline p-2 hover:bg-black hover:text-white" %>
 </div>

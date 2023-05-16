@@ -1,13 +1,16 @@
-<h2>About Page</h2>
-<h3>List of things I like</h3>
-<ul>
-  <li>Games</li>
-  <li>Food</li>
-  <li>Code</li>
- </ul>
+<h2 class="text-3xl font-bold text-center text-white">About Us</h2>
+<h3 class="text-xl font-semibold text-center">Alpha Goals:</h3>
+<ul class="text-center">
+  <div class="inline-block text-start list-disc">
+    <li>Green</li>
+    <li>Users</li>
+    <li>Articles</li>
+    <li>Categories</li>
+  </div>
+</ul>
 
-<div>
-<%= link_to "Articles Listing", articles_path %>
-|
-<%= link_to "Home Page", root_path %>
+<div class="text-center mx-0 mt-4">
+<%= link_to "Articles Listing", articles_path, class:"mx-4 underline p-2 hover:bg-black hover:text-white" %>
+<span>|</span>
+<%= link_to "Home Page", root_path, class:"mx-4 underline p-2 hover:bg-black hover:text-white" %>
 </div>

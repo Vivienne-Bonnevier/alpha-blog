@@ -1,5 +1,5 @@
     <% flash.each do |name, msg| %>
-      <div style="color:<%= flash_color(name) %>;">
-        <%= msg %>
+      <div class="bg-white">
+        <p class="text-<%= flash_color(name) %>"><%= msg %></p>
       </div>
     <% end %>

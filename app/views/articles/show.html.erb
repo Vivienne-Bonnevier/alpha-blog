@@ -1,8 +1,6 @@
-<h2>Showing article details</h2>
-
-<h2><%= @article.title%></h2>
-<p><strong>by: </strong><%= link_to @article.user.username, user_path(@article.user) if @article.user %></p>
-<p><strong>description: </strong><%= @article.description%></p>
+<h2 class = "font-bold text-3xl mx-auto my-2 text-center text-white"><%= @article.title%></h2>
+<p class="text-center"><strong>by: </strong><%= link_to @article.user.username, user_path(@article.user) if @article.user %></p>
+<p class="text-center"><strong>description: </strong><%= @article.description%></p>
 
 <div>
   <% if logged_in? && (@article.user == current_user || current_user.admin?) %>

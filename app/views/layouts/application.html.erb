@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <h1>Alpha Blog</h1>
+  <body class="w-full bg-gray-600">
     <%= render "layouts/nav" %>
-    <%= render "layouts/messages" %>
-    <%= yield %>
+    <div class="mx-6 bg-emerald-600 my-4 py-4">
+      <%= render "layouts/messages" %>
+      <%= yield %>
+    <div>
   </body>
 </html>

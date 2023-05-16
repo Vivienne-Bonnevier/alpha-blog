@@ -1,24 +1,22 @@
 <%= render "shared/errors", obj: @user %>
 
-<%= form_with model: @user, local: true, data: { turbo: false} do |f| %>
+<%= form_with model: @user, local: true, data: { turbo: false}, class: "shadow-lg w-2/5 mx-auto border border-solid border-black flex flex-col bg-gray-400 mb-4" do |f| %>
 
-  <p>
-    <%= f.label :username %><br>
+  <fieldset class="mx-auto flex flex-col w-1/2 my-2">
+    <%= f.label :username, class:"text-lg"%>
     <%= f.text_field :username %>
-  </p>
+  </fieldset>
 
-  <p>
-    <%= f.label :email %><br>
+  <fieldset class="mx-auto flex flex-col w-1/2 my-2">
+    <%= f.label :email, class:"text-lg"%>
     <%= f.email_field :email %>
-  </p>
+  </fieldset>
 
-  <p>
-    <%= f.label :password %><br>
+  <fieldset class="mx-auto flex flex-col w-1/2 my-2">
+    <%= f.label :password, class:"text-lg"%>
     <%= f.password_field :password %>
-  </p>
+  </fieldset>
 
-  <p>
-    <%= f.submit %>
-  </p>
+  <%= f.submit class: "bg-white border-solid border mx-auto w-1/4 align-center border-black my-2"%>
 
 <% end %>

@@ -1,24 +1,15 @@
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Author</th>
-      <th colspan="2" >Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= link_to article.title, article_path(article) %></td>
-        <td><%= article.description %></td>
-        <td><%= link_to article.user.username, user_path(article.user) if article.user %></td>
-        <!-- redundant? current_user is truthy or falsey -->
-        <% if logged_in? && ( article.user == current_user || current_user.admin? ) %>
-          <td><%= link_to "Edit", edit_article_path(article) %></td>
-          <td><%= link_to "Delete", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
-        <% end %>
-      </tr>
+<% @articles.each do |article| %>
+  <div class="bg-gray-200 mx-auto rounded-md flex flex-col my-3 w-2/5 border border-solid border-black">
+    <h3 class="mx-auto font-semibold text-lg underline my-1"><%= link_to article.title, article_path(article) %></h3>
+    <span class="mx-auto">By: <%= link_to article.user.username, user_path(article.user), class:"underline" if article.user %></span>
+    <p class="bg-white my-2 border-x-0 border border-black text-center"><%= article.description %></p>
+    <!-- redundant? current_user is truthy or falsey -->
+    <% if logged_in? && ( article.user == current_user || current_user.admin? ) %>
+      <div class="flex flex-row mx-auto my-2">
+        <span><%= link_to "Edit", edit_article_path(article), class:"text-blue-800 underline" %></span>
+        <span class="mx-2"></span>
+        <span><%= link_to "Delete", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"text-red-800 underline" %></span>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>

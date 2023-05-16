@@ -1,18 +1,25 @@
-<h2>Welcome to the page of&colon; <%= @user.username %></h2>
-
-<%= gravatar_for @user, size: 200 %>
-
-<p><%= link_to "Edit your profile", edit_user_path(@user) if logged_in? && @user == current_user %></p>
+<div class="my-2 mx-auto max-w-xl p-4 item-center flex flex-row bg-white rounded-lg whitespace-nowrap">
+  <%= gravatar_for @user, size: 200 %>
+  <div class="flex-col whitespace-nowrap m-4">
+    <h2 class="text-2xl font-bold my-2"><%= @user.username %></h2>
+    <address class="truncate my-2"><%= @user.email %></address>
+    <p class="text-blue-800 underline my-2"><%= link_to "Edit your profile", edit_user_path(@user) if logged_in? && @user == current_user %></p>
+    <% if logged_in? && @user == current_user %>
+      <h5 class="text-red-800 underline my-2"><%= link_to "Delete your Account", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This will also delete all associated articles." } %></h5>
+    <% elsif logged_in? && current_user.admin? %>
+      <h5 class="text-red-800 underline my-2"><%= link_to "Delete Account", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This will also delete all associated articles." } %></h5>
+    <% end %>
+  </div>
+</div>
 
 <% if @articles.length != 0 %>
-  <h3>Articles</h3>
-  <%= will_paginate @articles %>
+  <h3 class = "font-bold text-2xl mx-auto text-center mb-4">Articles</h3>
+  <% if @user.articles.length >= 5 %>
+  <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
+  <% end %>
   <%= render "articles/article" %>
+  <% if @user.articles.length >= 5 %>
+  <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
+  <% end %>
 <% end %>
 
-<br>
-<% if logged_in? && @user == current_user %>
-  <h5 style="color:red;"><%= link_to "Delete your Account", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This will also delete all associated articles." } %></h5>
-<% elsif logged_in? && current_user.admin? %>
-  <h5 style="color:red;"><%= link_to "Delete Account", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This will also delete all associated articles." } %></h5>
-<% end %>
