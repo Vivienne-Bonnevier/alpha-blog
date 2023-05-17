@@ -13,5 +13,14 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy"
 
   resources :categories, except: [:destroy]
+  
+  get "fake_user", to: "faker#user_random_1"
+  get "fake_user/:id", to: "faker#user_random"
+  get "fake_article", to: "faker#article_random_1"
+  get "fake_article/:id", to: "faker#article_random"
+  get "fake_category", to: "faker#category_random_1"
+  get "fake_category/:id", to: "faker#category_random"
+  get "fake_all", to: "faker#set_up_random"
+
 
 end

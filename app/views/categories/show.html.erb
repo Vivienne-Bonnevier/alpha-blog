@@ -4,11 +4,11 @@
 
 <% if @category.articles.length != 0 %>
   <% if @category.articles.length > @padg %>
-    <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
+    <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
   <% end %>
   <%= render "articles/article" %>
   <% if @category.articles.length > @padg %>
-    <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md mb-2"><%= will_paginate @articles %></div>
+    <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md mb-2"><%= will_paginate @articles %></div>
   <% end %>
   <p class="text-center mx-auto text-white" ><%= link_to "Categories", categories_path, class: "underline p-4" %></p>
 <% end %>

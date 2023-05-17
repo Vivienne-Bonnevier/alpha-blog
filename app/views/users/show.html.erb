@@ -14,11 +14,11 @@
 
 <% if @articles.length != 0 %>
   <% if @user.articles.length > @padg %>
-    <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
+    <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
   <% end %>
   <%= render "articles/article" %>
   <% if @user.articles.length > @padg %>
-    <div class="flickr_pagination w-80 mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
+    <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
   <% end %>
 <% end %>
 

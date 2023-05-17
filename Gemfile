@@ -54,9 +54,16 @@ gem 'will_paginate', '~> 3.3.0'
 # Use modular CSS from within erb files
 gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.29'
 
+# Process background jobs
+gem "sidekiq"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+
+  gem "pry"
+  # Produce randomly generated data to fill database for testing and developmental purposes
+  gem "faker"
 end
 
 group :development do

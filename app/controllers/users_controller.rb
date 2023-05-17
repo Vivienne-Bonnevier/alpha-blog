@@ -5,9 +5,8 @@ class UsersController < ApplicationController
   before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :require_different_admin, only: [:destroy]
 
-
   def index
-    @padg = 6
+    @padg = 10
     @users = User.paginate(page: params[:page], per_page: @padg)
     @length = User.all.size
   end
@@ -48,7 +47,7 @@ class UsersController < ApplicationController
     @user.destroy
     session[:user_id] = nil if @user == current_user
     flash[:notice] = "Account and all authored articles deleted"
-    redirect_to root_path
+    redirect_to users_path
   end
 
   private
@@ -60,7 +59,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # how to make this less redundant with articles.controller?
+  # ensure a user is themself or an admin before allowing to edit account
   def require_same_user
     # if someone is not the target user and they are also not an admin
     if current_user != @user && !current_user.admin?
@@ -69,7 +68,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # prevents an admin from deleting their own account, thus preventing the scenario where there may not be an admin
+  # prevent an admin from deleting their own account, thus preventing the scenario where there may not be an admin
   def require_different_admin
     if current_user == @user && current_user.admin?
       flash[:alert] = "Admins may not delete their own accounts. Please contact another admin and they will asist you."
@@ -77,5 +76,5 @@ class UsersController < ApplicationController
     end
   end
 
-
+  
 end

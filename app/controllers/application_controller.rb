@@ -19,4 +19,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # ensure that user is an admin before performing certain actions
+  def require_admin
+    unless logged_in? && current_user.admin?
+      flash[:alert] = "Unauthorized: You do not have administrator privledges."
+      redirect_to root_path
+    end
+  end
+
 end
