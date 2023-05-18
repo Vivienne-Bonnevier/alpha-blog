@@ -2,7 +2,7 @@ require "test_helper"
 
 class GenerateUserJobTest < ActiveJob::TestCase
 
-  test "generate users and see if user count is correct" do
+  test "generate users and see if count is correct" do
     assert_enqueued_jobs 0
     perform_enqueued_jobs do
       GenerateUserJob.perform_later

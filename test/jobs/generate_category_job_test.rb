@@ -2,7 +2,7 @@ require "test_helper"
 
 class GenerateCategoryJobTest < ActiveJob::TestCase
 
-  test "generate categories and see if user count is correct" do
+  test "generate categories and see if count is correct" do
     assert_enqueued_jobs 0
     perform_enqueued_jobs do
       GenerateCategoryJob.perform_later
