@@ -5,7 +5,7 @@ class FakerController < ApplicationController
   def user_random
     number = params[:id]
     number.to_i.times do
-      user_generate
+      GenerateUserJob.perform_later
     end
     redirect_to users_path
   end
@@ -20,7 +20,7 @@ class FakerController < ApplicationController
   def category_random
     number = params[:id]
     number.to_i.times do
-      category_generate
+      GenerateCategoryJob.perform_later
     end
     redirect_to categories_path
   end
@@ -64,7 +64,7 @@ class FakerController < ApplicationController
   def user_generate
     user = User.new
     user.username = Faker::Internet.username
-    user.email = Faker::Internet.safe_email
+    user.email = Faker::Internet.email
     user.password = "p4ss"
     user.save
   end

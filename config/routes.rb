@@ -22,5 +22,4 @@ Rails.application.routes.draw do
   get "fake_category/:id", to: "faker#category_random"
   get "fake_all", to: "faker#set_up_random"
 
-
 end
