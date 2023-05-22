@@ -3,14 +3,15 @@
   <div class="flex-col whitespace-nowrap m-4">
     <h2 class="text-2xl font-bold my-2"><%= @user.username %></h2>
     <address class="truncate my-2"><%= @user.email %></address>
-    <p class="text-blue-800 underline my-2"><%= link_to "Edit your profile", edit_user_path(@user) if logged_in? && @user == current_user %></p>
-    <% if logged_in? && @user == current_user %>
-      <h5 class="text-red-800 underline my-2"><%= link_to "Delete your Account", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This will also delete all associated articles." } %></h5>
-    <% elsif logged_in? && current_user.admin? %>
+    <% if logged_in? && (@user == current_user || current_user.admin?) %>
+      <p class="text-blue-800 underline my-2"><%= link_to "Edit profile", edit_user_path(@user), data:{ turbo_frame: "edit_form" }%></p>
       <h5 class="text-red-800 underline my-2"><%= link_to "Delete Account", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This will also delete all associated articles." } %></h5>
     <% end %>
   </div>
 </div>
+
+<%= turbo_frame_tag "edit_form" do %>
+<% end %>
 
 <% if @articles.length != 0 %>
   <% if @user.articles.length > @padg %>
