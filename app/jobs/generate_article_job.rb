@@ -8,8 +8,11 @@ class GenerateArticleJob < ApplicationJob
     article.user = User.find(User.pluck(:id).sample)
     article.save
     rand(0..5).times do
-      article.categories << Category.find(Category.pluck(:id).sample)
-      article.save
+      category = Category.find(Category.pluck(:id).sample)
+      unless article.categories.where(name: category.name).exists?
+        article.categories << category
+        article.save
+      end
     end
   end
 end
