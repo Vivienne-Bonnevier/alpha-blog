@@ -1,0 +1,16 @@
+<%= turbo_stream.update dom_id(@user, :box) do %>
+  <%= form_with model: @user, local: true, data: { turbo: false}, class: "flex flex-col" do |f| %>
+
+    <%= f.text_field :username, class:"mx-0 my-0"%>
+
+    <%= f.email_field :email %>
+
+    <%= f.password_field :password %>
+
+    <div class="flex flex-row mx-auto justify-between">
+      <%= f.submit class: "bg-white border-solid border w-1/4 align-center border-black min-w-max px-1.5", value: "Update" %>
+      <div class="mx-5"></div>
+      <%= link_to "Cancel", users_path, class: "bg-white border-solid border min-w-max px-1.5 align-center border-black" %>
+    </div>
+  <% end %>
+<% end %>

@@ -49,7 +49,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # Allow pagination, where longer queries can be broken up among many pages
-gem 'will_paginate', '~> 3.3.0'
+gem 'pagy', '~> 6.0', '>= 6.0.4'
 
 # Use modular CSS from within erb files
 gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.29'

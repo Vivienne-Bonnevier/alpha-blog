@@ -2,12 +2,12 @@
 
 <p class="text-center mx-auto underline my-4 text-white"><%= link_to "Create New Article", new_article_path if logged_in? %></p>
 
-<% if @length > @padg %>
-  <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
+<% if @pagy.pages > 1 %>
+  <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
 <% end %>
 <%= render 'article' %><br>
-<% if @length > @padg %>
-  <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%= will_paginate @articles %></div>
+<% if @pagy.pages > 1 %>
+  <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
 <% end %>
 
 <p class="text-center mx-auto underline my-2 text-white"><%= link_to "Create New Article", new_article_path if logged_in? %></p>

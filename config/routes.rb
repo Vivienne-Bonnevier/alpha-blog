@@ -7,6 +7,11 @@ Rails.application.routes.draw do
 
   get "signup", to: "users#new"
   resources :users, except: [:new]
+  resources :users do
+    member do
+      post "index_form"
+    end
+  end
 
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"

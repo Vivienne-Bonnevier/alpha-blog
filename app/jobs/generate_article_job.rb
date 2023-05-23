@@ -16,3 +16,11 @@ class GenerateArticleJob < ApplicationJob
     end
   end
 end
+      category = Category.find(Category.pluck(:id).sample)
+      unless article.categories.exists?(category.id)
+        article.categories << category
+        article.save
+      end
+    end
+  end
+end

@@ -1,19 +1,16 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :index_form]
   # this MUST come before
-  before_action :require_user, only: [:edit, :update, :destroy]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_user, only: [:edit, :update, :destroy, :index_form]
+  before_action :require_same_user, only: [:edit, :update, :destroy, :index_form]
   before_action :require_different_admin, only: [:destroy]
 
   def index
-    @padg = 10
-    @users = User.paginate(page: params[:page], per_page: @padg)
-    @length = User.all.size
+    @pagy, @users = pagy(User.order(:id).all, items: 10)
   end
 
   def show
-    @padg = 4
-    @articles = @user.articles.paginate(page: params[:page], per_page: @padg)
+    @pagy, @articles = pagy(@user.articles.order(:id), items: 4)
   end
   
   def new
@@ -48,6 +45,10 @@ class UsersController < ApplicationController
     session[:user_id] = nil if @user == current_user
     flash[:notice] = "Account and all authored articles deleted"
     redirect_to users_path
+  end
+
+  def index_form
+
   end
 
   private
