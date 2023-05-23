@@ -134,6 +134,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.14.4-x86_64-linux)
       racc (~> 1.4)
+    pagy (6.0.4)
     pg (1.5.3)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -224,7 +225,6 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    will_paginate (3.3.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.8)
@@ -241,6 +241,7 @@ DEPENDENCIES
   faker
   importmap-rails
   jbuilder
+  pagy (~> 6.0, >= 6.0.4)
   pg
   pry
   puma (~> 5.0)
@@ -255,7 +256,6 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
-  will_paginate (~> 3.3.0)
 
 RUBY VERSION
    ruby 3.2.2p53

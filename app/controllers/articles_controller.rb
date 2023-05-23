@@ -10,9 +10,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @padg = 5
-    @articles = Article.paginate(page: params[:page], per_page: @padg)
-    @length = Article.all.size
+    @pagy, @articles = pagy(Article.order(:id).all, items: 8)
   end
 
   def new

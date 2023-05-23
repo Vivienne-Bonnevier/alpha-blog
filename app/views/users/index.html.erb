@@ -1,12 +1,8 @@
 <h2 class = "font-bold text-3xl mx-auto mb-4 text-center text-white">Users</h2>
 
-<% if @length > @padg %>
-  <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%= will_paginate @users %></div>
-<% end %>
+<div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
 <%= render 'user' %>
-<% if @length > @padg %>
-  <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%= will_paginate @users %></div>
-<% end %>
+<div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
 
 <% unless logged_in? %>
   <div class="text-center my-4">
