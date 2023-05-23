@@ -1,8 +1,21 @@
 <h2 class = "font-bold text-3xl mx-auto mb-4 text-center text-white">Users</h2>
 
-<div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
-<%= render 'user' %>
-<div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
+<div class="mx-auto text-center w-max mb-4">
+<%= form_with url: users_path, method: :get, class: "flex flex-row", data: { turbo_frame: "results", turbo_action: "advance",
+                                                                              controller: "user-search", action:"input->user-search#submit" } do %>
+  <%= text_field_tag "filter", nil, placeholder: "Search", class: "" %>
+<% end %>
+</div>
+
+<% if @pagy.pages > 1 %>
+  <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy, link_extra: "data-turbo-action='advance'") if @pagy.pages > 1 %></div>
+<% end %>
+<%= turbo_frame_tag "results" do %>
+  <%= render 'user' %>
+<% end %>
+<% if @pagy.pages > 1 %>
+  <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy, link_extra: "data-turbo-action='advance'") if @pagy.pages > 1 %></div>
+<% end %>
 
 <% unless logged_in? %>
   <div class="text-center my-4">

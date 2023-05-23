@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   before_action :require_different_admin, only: [:destroy]
 
   def index
-    @pagy, @users = pagy(User.order(:id).all, items: 10)
+    filtered = User.where("username LIKE ?", "%#{params[:filter]}")
+    @pagy, @users = pagy(filtered.order(:id).all, items: 10)
   end
 
   def show
