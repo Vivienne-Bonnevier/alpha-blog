@@ -4,7 +4,7 @@ import debounce from "debounce";
 // Connects to data-controller="user-search"
 export default class extends Controller {
   initialize() {
-    this.submit = debounce(this.submit.bind(this), 300);
+    this.submit = debounce(this.submit.bind(this), 500);
   }
   submit() {
     this.element.requestSubmit();
