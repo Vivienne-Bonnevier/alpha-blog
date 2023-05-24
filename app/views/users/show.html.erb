@@ -15,11 +15,11 @@
 
 <% if @articles.length != 0 %>
   <% if @pagy.pages > 1 %>
-    <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
+    <div class="w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy, link_extra: "data-turbo-action='advance'") if @pagy.pages > 1 %></div>
   <% end %>
   <%= render "articles/article" %>
   <% if @pagy.pages > 1 %>
-    <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
+    <div class="w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy, link_extra: "data-turbo-action='advance'") if @pagy.pages > 1 %></div>
   <% end %>
 <% end %>
 

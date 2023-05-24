@@ -13,7 +13,7 @@
           <% end %>
         </div>
         <address id="<%= dom_id(user, :email) %>"><%= user.email %></address>
-        <p class="text-blue-800 underline" id="<%= dom_id(user, :password) %>"><%= link_to "View Profile", user_path(user) %></p>
+        <p class="text-blue-800 underline" id="<%= dom_id(user, :password) %>"><%= link_to "View Profile", user_path(user), data: {turbo_frame: "_top" } %></p>
         <p class="text-sm" id="<%= dom_id(user, :buttons) %>"><%= pluralize(user.articles.count, "article") %></p>
       </div>
     </div>

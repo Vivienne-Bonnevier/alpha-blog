@@ -10,11 +10,11 @@
 
 <%= turbo_frame_tag "results" do %>
   <% if @pagy.pages > 1 %>
-    <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy, link_extra: "data-turbo-action='advance'") if @pagy.pages > 1 %></div>
+    <div class="w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy, link_extra: "data-turbo-action='advance'") if @pagy.pages > 1 %></div>
   <% end %>
   <%= render 'user' %>
   <% if @pagy.pages > 1 %>
-    <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy, link_extra: "data-turbo-action='advance'") if @pagy.pages > 1 %></div>
+    <div class="w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy, link_extra: "data-turbo-action='advance'") if @pagy.pages > 1 %></div>
   <% end %>
 <% end %>
 
