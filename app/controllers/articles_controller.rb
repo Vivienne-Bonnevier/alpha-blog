@@ -10,7 +10,8 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @pagy, @articles = pagy(Article.order(:id).all, items: 8)
+    filtered = Article.where("title ~* ?", "\S*(#{params[:filter]})\S*")
+    @pagy, @articles = pagy(filtered.order(:id).all, items: 8)
   end
 
   def new

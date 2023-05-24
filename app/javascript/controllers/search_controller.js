@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 import debounce from "debounce";
 
-// Connects to data-controller="user-search"
+// Connects to data-controller="search"
 export default class extends Controller {
   initialize() {
     this.submit = debounce(this.submit.bind(this), 500);

@@ -2,11 +2,10 @@
 
 <div class="mx-auto text-center w-max mb-4">
 <%= form_with url: users_path, method: :get, class: "flex flex-row", data: { turbo_frame: "results", turbo_action: "advance",
-                                                                              controller: "user-search", action:"input->user-search#submit" } do %>
-  <%= text_field_tag "filter", nil, placeholder: "Search", class: "" %>
+                                                                              controller: "search", action:"input->search#submit" } do %>
+  <%= text_field_tag "filter", nil, placeholder: "Search usernames", class: "" %>
 <% end %>
 </div>
-
 
 <%= turbo_frame_tag "results" do %>
   <% if @pagy.pages > 1 %>

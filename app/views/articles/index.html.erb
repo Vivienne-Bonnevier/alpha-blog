@@ -2,12 +2,21 @@
 
 <p class="text-center mx-auto underline my-4 text-white"><%= link_to "Create New Article", new_article_path if logged_in? %></p>
 
-<% if @pagy.pages > 1 %>
-  <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
+<div class="mx-auto text-center w-max mb-4">
+<%= form_with url: articles_path, method: :get, class: "flex flex-row", data: { turbo_frame: "results", turbo_action: "advance",
+                                                                              controller: "search", action:"input->search#submit" } do %>
+  <%= text_field_tag "filter", nil, placeholder: "Search titles", class: "" %>
 <% end %>
-<%= render 'article' %><br>
-<% if @pagy.pages > 1 %>
-  <div class="flickr_pagination w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
+</div>
+
+<%= turbo_frame_tag "results" do %>
+  <% if @pagy.pages > 1 %>
+    <div class="w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
+  <% end %>
+  <%= render 'article' %><br>
+  <% if @pagy.pages > 1 %>
+    <div class="w-max mx-auto bg-white rounded-md shadow-md"><%== pagy_nav(@pagy) if @pagy.pages > 1 %></div>
+  <% end %>
 <% end %>
 
 <p class="text-center mx-auto underline my-2 text-white"><%= link_to "Create New Article", new_article_path if logged_in? %></p>

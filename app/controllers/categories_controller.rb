@@ -3,7 +3,8 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update]
 
   def index
-    @pagy, @categories = pagy(Category.order(:id).all, items: 10)
+    filtered = Category.where("name ~* ?", "\S*(#{params[:filter]})\S*")
+    @pagy, @categories = pagy(filtered.order(:id).all, items: 10)
   end
 
   def show
