@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   get "about", to: "pages#about"
 
   resources :articles, only: [:show, :index, :new, :create, :edit, :update, :destroy] #leaving this here for reference, but since all are here, can just do resources :articles
+  resources :articles do
+    member do
+      post "index_form"
+    end
+  end
 
   get "signup", to: "users#new"
   resources :users, except: [:new]

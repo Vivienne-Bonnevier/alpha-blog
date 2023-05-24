@@ -1,0 +1,17 @@
+<%= turbo_stream.update dom_id(@article, :box) do %>
+  <%= form_with model: @article, local: true, data: { turbo: false}, class: "flex flex-col" do |f| %>
+
+    <%= f.text_field :title, class:"m-0 p-0", placeholder:"Title" %>
+
+    <%= f.text_area :description, class:"m-0 p-0", placeholder:"Description" %>
+
+    <%= f.collection_select :category_ids, Category.order(:name).all, :id, :name, {prompt: "Make your selection from the list below."}, {size: 6, multiple: true, class: "w-full border border-black border-solid m-0 p-0"} %>
+
+
+    <div class="flex flex-row mx-auto justify-between">
+      <%= f.submit class: "text-sm bg-white border-solid border w-1/4 align-center border-black min-w-max px-1.5", value: "Update" %>
+      <div class="mx-5"></div>
+      <%= link_to "Cancel", articles_path, class: "text-sm bg-white border-solid border min-w-max px-1.5 align-center border-black" %>
+    </div>
+  <% end %>
+<% end %>
